@@ -34,7 +34,7 @@ class ProductResource(Resource):
 class ProducttIdResource(Resource):
     @responds(schema=ProductSchema)
     def get(self, prouduct_id: int) -> ProductModel:
-        """Get Single Widget"""
+        """Get Single Product"""
 
         return ProductService.get_by_id(prouduct_id)
 
