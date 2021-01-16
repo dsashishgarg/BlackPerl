@@ -1,0 +1,5 @@
+
+for running application -->> simply run main.py file in root dir or python3 main.py
+
+for running pytest ---> python -m pytest -v
+for checking coverage ---> python -m pytest --cov
