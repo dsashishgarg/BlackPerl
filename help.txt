@@ -3,3 +3,12 @@ for running application -->> simply run main.py file in root dir or python3 main
 
 for running pytest ---> python -m pytest -v
 for checking coverage ---> python -m pytest --cov
+
+main -->> create_app (from config.create_app import create_app) -->>
+register_routes(api, app) (from app.product.routes import register_routes)-->>
+api.add_namespace(product_api, path=f"/{root}/{BASE_ROUTE}") (from .controller import api as product_api) -->>
+product_api -->> all CURD Opeartions (defn from .service import ProductService) -->> 
+
+To rebuild this image you must use `docker-compose build` or `docker-compose up --build`.
+
+sqllite3 
