@@ -1,7 +1,11 @@
 version: "3"
 
 services:
-  python:
-    build: .
+  flask_api:
+    container_name: BP
+    build:
+      context: .
+      dockerfile: Dockerfile
+    restart: always
     ports:
-      - 5000:5000
+      - "5000:5000"
