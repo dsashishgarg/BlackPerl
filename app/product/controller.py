@@ -8,7 +8,12 @@ from .schema import ProductSchema
 from .service import ProductService
 from .models import ProductModel
 
+from utils.logger import get_logger, api_response_time, LogDetails, ApiStatus, log_details_to_string, ApiName
+from datetime import datetime
+
 api = Namespace("Product", description="Product related API's")  # noqa
+
+LOG = get_logger(__name__)
 
 
 @api.route("/")
@@ -18,7 +23,15 @@ class ProductResource(Resource):
     @responds(schema=ProductSchema, many=True)
     def get(self) -> List[ProductModel]:
         """Get all Products"""
-
+        start = datetime.now()
+        log_details = LogDetails.parse_obj({
+            'api_name': ApiName.getall,
+            'status_code': 'NA',
+            'start_time': start,
+            'message': 'NA'
+        })
+        log_details.api_status = ApiStatus.SUCCESS
+        api_response_time(log_details)
         return ProductService.get_all()
 
     @accepts(schema=ProductSchema, api=api)
